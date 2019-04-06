@@ -1,0 +1,47 @@
+# 
+#  https://docs.oracle.com/en/database/oracle/oracle-database/18/admin/creating-and-configuring-an-oracle-database.html#GUID-C4BEF0B8-3542-484E-897C-F575FEC2766A
+#
+
+
+set ORACLE_SID=ORA18
+set ORACLE_HOME=c:\oracle\18c
+
+mkdir c:\oracle\db
+mkdir c:\oracle\db_recovery_area
+mkdir c:\oracle\db\ORA18
+@rem mkdir c:\oracle\db\ORA18\db_recovery_area
+mkdir c:\oracle\db\ORA18\diag
+
+copy init.ora %ORACLE_HOME%\database\init%ORACLE_SID%.ora
+
+path=%ORACLE_HOME%\bin;%PATH%
+
+@ rem ???? oradim -new -sid %ORACLE_SID% -startmode manual -pfile init.ora
+  ???      oradim -new -sid %ORACLE_SID% -startmode manual -pfile %ORACLE_HOME%\database\init%ORACLE_SID%.ora
+
+  wmic service where "name like '%Oracle%'" get name,status,state
+  ---> This seems to take a while:
+  oradim -new -sid %ORACLE_SID% -startmode manual        
+  wmic service where "name like '%Oracle%'" get name,status,state
+
+
+sqlplus /nolog
+CONNECT / AS SYSDBA
+
+create spfile from pfile;
+
+$ dir /od %ORACLE_HOME%\database
+
+startup nomount
+
+@?/rdbms/admin/catalog.sql
+@?/rdbms/admin/catproc.sql
+@?/rdbms/admin/utlrp.sql
+
+connect system/iAmSystem
+
+@?/sqlplus/admin/pupbld.sql
+
+###
+
+copy listener %oracle_home%\network\admin

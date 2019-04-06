@@ -1,0 +1,42 @@
+##############################################################################
+# Example INIT.ORA file
+#
+# This file is provided by Oracle Corporation to help you start by providing
+# a starting point to customize your RDBMS installation for your site. 
+# 
+# NOTE: The values that are used in this file are only intended to be used
+# as a starting point. You may want to adjust/tune those values to your
+# specific hardware and needs. You may also consider using Database
+# Configuration Assistant tool (DBCA) to create INIT file and to size your
+# initial set of tablespaces based on the user input.
+###############################################################################
+ 
+# Change '<ORACLE_BASE>' to point to the oracle base (the one you specify at
+# install time)
+ 
+db_name                    = ORA18  # Must agree with database name in "create database" statement
+memory_target              = 1G
+processes                  = 150
+db_block_size              = 8192
+db_domain                  =''
+
+#
+# Use Oracle managed file:
+#
+db_create_file_dest        ='c:\oracle\db'                # Is ORA18 directory created underneath?
+db_recovery_file_dest      ='c:\oracle\db_recovery_area'  # Is ORA18 directory created underneath?
+db_recovery_file_dest_size = 2G
+db_create_online_log_dest_1='c:\oracle\db'                # Is ORA18 directory created underneath?
+# ----------------------------------------------
+
+diagnostic_dest            ='c:\oracle\db\ORA18\diag'
+
+dispatchers='(PROTOCOL=TCP) (SERVICE=ORCLXDB)'
+open_cursors               = 300 
+remote_login_passwordfile  = EXCLUSIVE
+# undo_tablespace            = UNDO
+
+# You may want to ensure that control files are created on separate physical
+# devices
+control_files = ('c:/oracle/db/ORA18/ctl1.ora', 'c:/oracle/db/ORA18/ctl2.ora')
+compatible ='12.0.0'
