@@ -41,7 +41,28 @@ startup nomount
 connect system/iAmSystem
 
 @?/sqlplus/admin/pupbld.sql
+#
+#### Starting up DB
+#
+#    Run as admin
 
-###
+oradim -startup -sid %oracle_sid%
 
-copy listener %oracle_home%\network\admin
+### Listener
+
+move              %oracle_home%\network\admin\sqlnet.ora %oracle_home%\network\admin\sqlnet.ora.orig
+
+
+del               %oracle_home%\network\admin\listener.ora
+copy listener.ora %oracle_home%\network\admin\listener.ora
+
+del               %oracle_home%\network\admin\sqlnet.ora
+copy sqlnet.ora   %oracle_home%\network\admin\sqlnet.ora
+
+del               %oracle_home%\network\admin\tnsnames.ora
+copy tnsnames.ora %oracle_home%\network\admin\tnsnames.ora
+
+
+lsnrctl start 
+lsnrctl reload
+
