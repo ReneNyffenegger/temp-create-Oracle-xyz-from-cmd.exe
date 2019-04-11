@@ -66,3 +66,7 @@ copy tnsnames.ora %oracle_home%\network\admin\tnsnames.ora
 lsnrctl start 
 lsnrctl reload
 
+
+**** Powershell
+[environment]::setEnvironmentVariable("ORACLE_SID" , "ORA18"        , "machine") 
+[environment]::setEnvironmentVariable("ORACLE_HOME", "c:\oracle\18c", "machine") 
