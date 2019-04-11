@@ -78,6 +78,3 @@ grant dba to rene;
 **** Powershell
 [environment]::setEnvironmentVariable("ORACLE_SID" , "ORA18"        , "machine") 
 [environment]::setEnvironmentVariable("ORACLE_HOME", "c:\oracle\18c", "machine") 
-
-
-
