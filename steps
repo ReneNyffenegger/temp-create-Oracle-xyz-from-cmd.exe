@@ -41,6 +41,16 @@ startup nomount
 connect system/iAmSystem
 
 @?/sqlplus/admin/pupbld.sql
+
+
+
+#
+# Create tablespace (as user system)
+#
+
+create tablespace data;
+
+
 #
 #### Starting up DB
 #
@@ -67,6 +77,7 @@ lsnrctl start
 lsnrctl reload
 
 
+
 #
 #  Create first user
 #
@@ -78,3 +89,4 @@ grant dba to rene;
 **** Powershell
 [environment]::setEnvironmentVariable("ORACLE_SID" , "ORA18"        , "machine") 
 [environment]::setEnvironmentVariable("ORACLE_HOME", "c:\oracle\18c", "machine") 
+
