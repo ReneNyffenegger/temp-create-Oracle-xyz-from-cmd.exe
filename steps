@@ -82,7 +82,10 @@ lsnrctl reload
 #  Create first user
 #
 sqlplus / as sysdba
-create user rene identified by rene;
+create user rene
+  identified by rene
+  default tablespace data;
+ 
 grant dba to rene;
 
 
