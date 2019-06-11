@@ -86,7 +86,11 @@ create user rene
   identified by rene
   default tablespace data;
  
-grant dba to rene;
+grant
+   dba,
+   select any dictionary
+to
+   rene;
 
 
 **** Powershell
