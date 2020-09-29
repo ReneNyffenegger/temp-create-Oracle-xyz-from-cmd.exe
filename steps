@@ -1,7 +1,13 @@
 # 
-#  https://docs.oracle.com/en/database/oracle/oracle-database/18/admin/creating-and-configuring-an-oracle-database.html#GUID-C4BEF0B8-3542-484E-897C-F575FEC2766A
+#  https://docs.oracle.com/en/database/oracle/oracle-database/18/admin/creating-and-configuring-an-oracle-database.html
+#  https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/creating-and-configuring-an-oracle-database.html
 #
-
+# -----
+#   Download software from
+#     https://www.oracle.com/database/technologies/oracle19c-windows-downloads.html
+#       (Oracle Database 19c (19.3) for Microsoft Windows x64 (64-bit)) //// Not Grid Infrastructure, not Global Service Manager
+#        --> WINDOWS.X64_193000_db_home.zip
+#      
 
 set ORACLE_SID=ORA18
 set ORACLE_HOME=c:\oracle\18c
