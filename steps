@@ -8,6 +8,11 @@
 #       (Oracle Database 19c (19.3) for Microsoft Windows x64 (64-bit)) //// Not Grid Infrastructure, not Global Service Manager
 #        --> WINDOWS.X64_193000_db_home.zip
 #      
+#
+
+expand-archive ~/Downloads/WINDOWS.X64_193000_db_home.zip $env:temp/oraInstall
+
+# ------------------------------------------
 
 set ORACLE_SID=ORA18
 set ORACLE_HOME=c:\oracle\18c
