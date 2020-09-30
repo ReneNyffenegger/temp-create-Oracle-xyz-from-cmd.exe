@@ -9,26 +9,392 @@
 #        --> WINDOWS.X64_193000_db_home.zip
 #      
 #
+#
+Check
+  - Computer\HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE
 
-expand-archive ~/Downloads/WINDOWS.X64_193000_db_home.zip $env:temp/oraInstall
+####
+
+$env:ORACLE_HOME='c:\Oracle\19'
+
+expand-archive ~/Downloads/WINDOWS.X64_193000_db_home.zip $env:ORACLE_HOME
+
+cd $env:ORACLE_HOME
+
+# User accounts before installation:
+PS C:\Users\Rene\github\github\notes\notes> wmic UserAccount get name,sid
+Name                SID
+Administrator       S-1-5-21-1986187950-1154198019-2155599821-500
+DefaultAccount      S-1-5-21-1986187950-1154198019-2155599821-503
+Guest               S-1-5-21-1986187950-1154198019-2155599821-501
+Rene                S-1-5-21-1986187950-1154198019-2155599821-1001
+WDAGUtilityAccount  S-1-5-21-1986187950-1154198019-2155599821-504
+
+# Groups before installation
+
+PS C:\Users\Rene\github\github\notes\notes>  wmic group where "localAccount='true'" get caption,SID,status
+Caption                                              SID                                             Status
+DESKTOP-1SDJMCL\Access Control Assistance Operators  S-1-5-32-579                                    OK
+DESKTOP-1SDJMCL\Administrators                       S-1-5-32-544                                    OK
+DESKTOP-1SDJMCL\Backup Operators                     S-1-5-32-551                                    OK
+DESKTOP-1SDJMCL\Cryptographic Operators              S-1-5-32-569                                    OK
+DESKTOP-1SDJMCL\Device Owners                        S-1-5-32-583                                    OK
+DESKTOP-1SDJMCL\Distributed COM Users                S-1-5-32-562                                    OK
+DESKTOP-1SDJMCL\Event Log Readers                    S-1-5-32-573                                    OK
+DESKTOP-1SDJMCL\Guests                               S-1-5-32-546                                    OK
+DESKTOP-1SDJMCL\Hyper-V Administrators               S-1-5-32-578                                    OK
+DESKTOP-1SDJMCL\IIS_IUSRS                            S-1-5-32-568                                    OK
+DESKTOP-1SDJMCL\Network Configuration Operators      S-1-5-32-556                                    OK
+DESKTOP-1SDJMCL\Performance Log Users                S-1-5-32-559                                    OK
+DESKTOP-1SDJMCL\Performance Monitor Users            S-1-5-32-558                                    OK
+DESKTOP-1SDJMCL\Power Users                          S-1-5-32-547                                    OK
+DESKTOP-1SDJMCL\Remote Desktop Users                 S-1-5-32-555                                    OK
+DESKTOP-1SDJMCL\Remote Management Users              S-1-5-32-580                                    OK
+DESKTOP-1SDJMCL\Replicator                           S-1-5-32-552                                    OK
+DESKTOP-1SDJMCL\System Managed Accounts Group        S-1-5-32-581                                    OK
+DESKTOP-1SDJMCL\Users                                S-1-5-32-545                                    OK
+DESKTOP-1SDJMCL\docker-users                         S-1-5-21-1986187950-1154198019-2155599821-1002  OK
+
+
+  #### New groups:
+DESKTOP-1SDJMCL\ORA_ASMDBA                           S-1-5-21-1986187950-1154198019-2155599821-1013  OK
+DESKTOP-1SDJMCL\ORA_ASMOPER                          S-1-5-21-1986187950-1154198019-2155599821-1014  OK
+DESKTOP-1SDJMCL\ORA_CLIENT_LISTENERS                 S-1-5-21-1986187950-1154198019-2155599821-1009  OK
+DESKTOP-1SDJMCL\ORA_DBA                              S-1-5-21-1986187950-1154198019-2155599821-1004  OK
+DESKTOP-1SDJMCL\ORA_DBSVCACCTS                       S-1-5-21-1986187950-1154198019-2155599821-1015  OK
+DESKTOP-1SDJMCL\ORA_GRID_LISTENERS                   S-1-5-21-1986187950-1154198019-2155599821-1007  OK
+DESKTOP-1SDJMCL\ORA_INSTALL                          S-1-5-21-1986187950-1154198019-2155599821-1003  OK
+DESKTOP-1SDJMCL\ORA_OPER                             S-1-5-21-1986187950-1154198019-2155599821-1008  OK
+DESKTOP-1SDJMCL\ORA_OraDB19Home1_DBA                 S-1-5-21-1986187950-1154198019-2155599821-1005  OK
+DESKTOP-1SDJMCL\ORA_OraDB19Home1_OPER                S-1-5-21-1986187950-1154198019-2155599821-1006  OK
+DESKTOP-1SDJMCL\ORA_OraDB19Home1_SVCACCTS            S-1-5-21-1986187950-1154198019-2155599821-1016  OK
+DESKTOP-1SDJMCL\ORA_OraDB19Home1_SYSBACKUP           S-1-5-21-1986187950-1154198019-2155599821-1010  OK
+DESKTOP-1SDJMCL\ORA_OraDB19Home1_SYSDG               S-1-5-21-1986187950-1154198019-2155599821-1011  OK
+DESKTOP-1SDJMCL\ORA_OraDB19Home1_SYSKM               S-1-5-21-1986187950-1154198019-2155599821-1012  OK
+
+# Services before
+
+PS C:\Users\Rene\github\github\notes\notes> get-service
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  AarSvc_93be8       Agent Activation Runtime_93be8
+Stopped  AJRouter           AllJoyn Router Service
+Stopped  ALG                Application Layer Gateway Service
+Stopped  AppIDSvc           Application Identity
+Running  Appinfo            Application Information
+Stopped  AppMgmt            Application Management
+Stopped  AppReadiness       App Readiness
+Stopped  AppVClient         Microsoft App-V Client
+Running  AppXSvc            AppX Deployment Service (AppXSVC)
+Stopped  AssignedAccessM... AssignedAccessManager Service
+Running  AudioEndpointBu... Windows Audio Endpoint Builder
+Running  Audiosrv           Windows Audio
+Stopped  autotimesvc        Cellular Time
+Stopped  AxInstSV           ActiveX Installer (AxInstSV)
+Stopped  BcastDVRUserSer... GameDVR and Broadcast User Service_...
+Stopped  BDESVC             BitLocker Drive Encryption Service
+Running  BFE                Base Filtering Engine
+Running  BITS               Background Intelligent Transfer Ser...
+Stopped  BluetoothUserSe... Bluetooth User Support Service_93be8
+Running  BrokerInfrastru... Background Tasks Infrastructure Ser...
+Running  BTAGService        Bluetooth Audio Gateway Service
+Running  BthAvctpSvc        AVCTP service
+Running  bthserv            Bluetooth Support Service
+Running  camsvc             Capability Access Manager Service
+Stopped  CaptureService_... CaptureService_93be8
+Running  cbdhsvc_93be8      Clipboard User Service_93be8
+Running  CDPSvc             Connected Devices Platform Service
+Running  CDPUserSvc_93be8   Connected Devices Platform User Ser...
+Running  CertPropSvc        Certificate Propagation
+Stopped  ClipSVC            Client License Service (ClipSVC)
+Running  com.docker.service Docker Desktop Service
+Stopped  COMSysApp          COM+ System Application
+Stopped  ConsentUxUserSv... ConsentUX_93be8
+Running  CoreMessagingRe... CoreMessaging
+Stopped  cphs               Intel(R) Content Protection HECI Se...
+Stopped  CredentialEnrol... CredentialEnrollmentManagerUserSvc_...
+Running  CryptSvc           Cryptographic Services
+Stopped  CscService         Offline Files
+Running  DcomLaunch         DCOM Server Process Launcher
+Stopped  defragsvc          Optimize drives
+Stopped  DeviceAssociati... DeviceAssociationBroker_93be8
+Running  DeviceAssociati... Device Association Service
+Running  DeviceInstall      Device Install Service
+Stopped  DevicePickerUse... DevicePicker_93be8
+Stopped  DevicesFlowUser... DevicesFlow_93be8
+Stopped  DevQueryBroker     DevQuery Background Discovery Broker
+Running  Dhcp               DHCP Client
+Stopped  diagnosticshub.... Microsoft (R) Diagnostics Hub Stand...
+Stopped  diagsvc            Diagnostic Execution Service
+Running  DiagTrack          Connected User Experiences and Tele...
+Running  DispBrokerDeskt... Display Policy Service
+Running  DisplayEnhancem... Display Enhancement Service
+Stopped  DmEnrollmentSvc    Device Management Enrollment Service
+Stopped  dmwappushservice   Device Management Wireless Applicat...
+Running  Dnscache           DNS Client
+Running  DoSvc              Delivery Optimization
+Stopped  dot3svc            Wired AutoConfig
+Running  DPS                Diagnostic Policy Service
+Stopped  DsmSvc             Device Setup Manager
+Stopped  DsSvc              Data Sharing Service
+Running  DusmSvc            Data Usage
+Stopped  Eaphost            Extensible Authentication Protocol
+Stopped  EFS                Encrypting File System (EFS)
+Stopped  embeddedmode       Embedded Mode
+Stopped  EntAppSvc          Enterprise App Management Service
+Running  EventLog           Windows Event Log
+Running  EventSystem        COM+ Event System
+Stopped  Fax                Fax
+Stopped  fdPHost            Function Discovery Provider Host
+Stopped  FDResPub           Function Discovery Resource Publica...
+Stopped  fhsvc              File History Service
+Running  FontCache          Windows Font Cache Service
+Running  FoxitReaderUpda... Foxit Reader Update Service
+Stopped  FrameServer        Windows Camera Frame Server
+Stopped  GoogleChromeEle... Google Chrome Elevation Service (Go...
+Running  gpsvc              Group Policy Client
+Stopped  GraphicsPerfSvc    GraphicsPerfSvc
+Stopped  gupdate            Google Update Service (gupdate)
+Stopped  gupdatem           Google Update Service (gupdatem)
+Stopped  hidserv            Human Interface Device Service
+Running  hns                Host Network Service
+Running  HvHost             HV Host Service
+Running  IBMPMSVC           Lenovo PM Service
+Running  ibtsiva            Intel Bluetooth Service
+Stopped  icssvc             Windows Mobile Hotspot Service
+Running  igfxCUIService2... Intel(R) HD Graphics Control Panel ...
+Stopped  IKEEXT             IKE and AuthIP IPsec Keying Modules
+Running  InstallService     Microsoft Store Install Service
+Running  iphlpsvc           IP Helper
+Stopped  IpxlatCfgSvc       IP Translation Configuration Service
+Running  KeyIso             CNG Key Isolation
+Stopped  KtmRm              KtmRm for Distributed Transaction C...
+Running  LanmanServer       Server
+Running  LanmanWorkstation  Workstation
+Running  lfsvc              Geolocation Service
+Running  LicenseManager     Windows License Manager Service
+Stopped  lltdsvc            Link-Layer Topology Discovery Mapper
+Running  lmhosts            TCP/IP NetBIOS Helper
+Stopped  LPlatSvc           Lenovo Platform Service
+Running  LSM                Local Session Manager
+Stopped  LxpSvc             Language Experience Service
+Running  LxssManager        LxssManager
+Stopped  LxssManagerUser... LxssManagerUser_93be8
+Stopped  MapsBroker         Downloaded Maps Manager
+Stopped  MessagingServic... MessagingService_93be8
+Stopped  MixedRealityOpe... Windows Mixed Reality OpenXR Service
+Stopped  MozillaMaintenance Mozilla Maintenance Service
+Running  mpssvc             Windows Defender Firewall
+Stopped  MSDTC              Distributed Transaction Coordinator
+Stopped  MSiSCSI            Microsoft iSCSI Initiator Service
+Stopped  msiserver          Windows Installer
+Stopped  NaturalAuthenti... Natural Authentication
+Stopped  NcaSvc             Network Connectivity Assistant
+Running  NcbService         Network Connection Broker
+Stopped  NcdAutoSetup       Network Connected Devices Auto-Setup
+Stopped  Netlogon           Netlogon
+Stopped  Netman             Network Connections
+Running  netprofm           Network List Service
+Stopped  NetSetupSvc        Network Setup Service
+Stopped  NetTcpPortSharing  Net.Tcp Port Sharing Service
+Stopped  NgcCtnrSvc         Microsoft Passport Container
+Stopped  NgcSvc             Microsoft Passport
+Running  NlaSvc             Network Location Awareness
+Running  nsi                Network Store Interface Service
+Running  nvagent            Network Virtualization Service
+Running  OneSyncSvc_93be8   Sync Host_93be8
+Running  OracleRemExecSe... OracleRemExecServiceV2
+Stopped  p2pimsvc           Peer Networking Identity Manager
+Stopped  p2psvc             Peer Networking Grouping
+Running  PcaSvc             Program Compatibility Assistant Ser...
+Stopped  PeerDistSvc        BranchCache
+Stopped  perceptionsimul... Windows Perception Simulation Service
+Stopped  PerfHost           Performance Counter DLL Host
+Stopped  PhoneSvc           Phone Service
+Running  PimIndexMainten... Contact Data_93be8
+Stopped  pla                Performance Logs & Alerts
+Running  PlugPlay           Plug and Play
+Stopped  PNRPAutoReg        PNRP Machine Name Publication Service
+Stopped  PNRPsvc            Peer Name Resolution Protocol
+Stopped  PolicyAgent        IPsec Policy Agent
+Running  Power              Power
+Stopped  PrintNotify        Printer Extensions and Notifications
+Stopped  PrintWorkflowUs... PrintWorkflow_93be8
+Running  ProfSvc            User Profile Service
+Stopped  PushToInstall      Windows PushToInstall Service
+Stopped  QWAVE              Quality Windows Audio Video Experience
+Stopped  RasAuto            Remote Access Auto Connection Manager
+Running  RasMan             Remote Access Connection Manager
+Stopped  RemoteAccess       Routing and Remote Access
+Stopped  RemoteRegistry     Remote Registry
+Stopped  RetailDemo         Retail Demo Service
+Running  RmSvc              Radio Management Service
+Running  RpcEptMapper       RPC Endpoint Mapper
+Stopped  RpcLocator         Remote Procedure Call (RPC) Locator
+Running  RpcSs              Remote Procedure Call (RPC)
+Running  RtkAudioService    Realtek Audio Service
+Running  SamSs              Security Accounts Manager
+Running  SCardSvr           Smart Card
+Stopped  ScDeviceEnum       Smart Card Device Enumeration Service
+Running  Schedule           Task Scheduler
+Stopped  SCPolicySvc        Smart Card Removal Policy
+Stopped  SDRSVC             Windows Backup
+Stopped  seclogon           Secondary Logon
+Running  SecurityHealthS... Windows Security Service
+Running  SEMgrSvc           Payments and NFC/SE Manager
+Running  SENS               System Event Notification Service
+Stopped  Sense              Windows Defender Advanced Threat Pr...
+Stopped  SensorDataService  Sensor Data Service
+Stopped  SensorService      Sensor Service
+Stopped  SensrSvc           Sensor Monitoring Service
+Stopped  SessionEnv         Remote Desktop Configuration
+Running  SgrmBroker         System Guard Runtime Monitor Broker
+Running  SharedAccess       Internet Connection Sharing (ICS)
+Stopped  SharedRealitySvc   Spatial Data Service
+Running  ShellHWDetection   Shell Hardware Detection
+Stopped  shpamsvc           Shared PC Account Manager
+Stopped  smphost            Microsoft Storage Spaces SMP
+Running  SmsRouter          Microsoft Windows SMS Router Service.
+Stopped  SNMPTRAP           SNMP Trap
+Stopped  spectrum           Windows Perception Service
+Running  Spooler            Print Spooler
+Stopped  sppsvc             Software Protection
+Running  SSDPSRV            SSDP Discovery
+Stopped  ssh-agent          OpenSSH Authentication Agent
+Running  SstpSvc            Secure Socket Tunneling Protocol Se...
+Running  StateRepository    State Repository Service
+Running  stisvc             Windows Image Acquisition (WIA)
+Running  StorSvc            Storage Service
+Stopped  svsvc              Spot Verifier
+Stopped  swprv              Microsoft Software Shadow Copy Prov...
+Running  SynTPEnhService    SynTPEnh Caller Service
+Running  SysMain            SysMain
+Running  SystemEventsBroker System Events Broker
+Running  TabletInputService Touch Keyboard and Handwriting Pane...
+Stopped  TapiSrv            Telephony
+Stopped  TermService        Remote Desktop Services
+Running  Themes             Themes
+Stopped  TieringEngineSe... Storage Tiers Management
+Running  TimeBrokerSvc      Time Broker
+Running  TokenBroker        Web Account Manager
+Running  TrkWks             Distributed Link Tracking Client
+Stopped  TroubleshootingSvc Recommended Troubleshooting Service
+Stopped  TrustedInstaller   Windows Modules Installer
+Stopped  tzautoupdate       Auto Time Zone Updater
+Stopped  UdkUserSvc_93be8   Udk User Service_93be8
+Stopped  UevAgentService    User Experience Virtualization Service
+Stopped  UmRdpService       Remote Desktop Services UserMode Po...
+Running  UnistoreSvc_93be8  User Data Storage_93be8
+Stopped  upnphost           UPnP Device Host
+Running  UserDataSvc_93be8  User Data Access_93be8
+Running  UserManager        User Manager
+Running  UsoSvc             Update Orchestrator Service
+Stopped  VacSvc             Volumetric Audio Compositor Service
+Running  valWBFPolicySer... Synaptics FP WBF Policy Service
+Running  valWbioSyncSvc     BiometricSensorDataSynchronization
+Running  VaultSvc           Credential Manager
+Running  vds                Virtual Disk
+Stopped  vmcompute          Hyper-V Host Compute Service
+Stopped  vmicguestinterface Hyper-V Guest Service Interface
+Stopped  vmicheartbeat      Hyper-V Heartbeat Service
+Stopped  vmickvpexchange    Hyper-V Data Exchange Service
+Stopped  vmicrdv            Hyper-V Remote Desktop Virtualizati...
+Stopped  vmicshutdown       Hyper-V Guest Shutdown Service
+Stopped  vmictimesync       Hyper-V Time Synchronization Service
+Stopped  vmicvmsession      Hyper-V PowerShell Direct Service
+Stopped  vmicvss            Hyper-V Volume Shadow Copy Requestor
+Stopped  VSS                Volume Shadow Copy
+Stopped  W32Time            Windows Time
+Stopped  WaaSMedicSvc       Windows Update Medic Service
+Stopped  WalletService      WalletService
+Stopped  WarpJITSvc         WarpJITSvc
+Stopped  wbengine           Block Level Backup Engine Service
+Running  WbioSrvc           Windows Biometric Service
+Running  Wcmsvc             Windows Connection Manager
+Stopped  wcncsvc            Windows Connect Now - Config Registrar
+Running  WdiServiceHost     Diagnostic Service Host
+Running  WdiSystemHost      Diagnostic System Host
+Running  WdNisSvc           Microsoft Defender Antivirus Networ...
+Stopped  WebClient          WebClient
+Stopped  Wecsvc             Windows Event Collector
+Stopped  WEPHOSTSVC         Windows Encryption Provider Host Se...
+Stopped  wercplsupport      Problem Reports Control Panel Support
+Stopped  WerSvc             Windows Error Reporting Service
+Stopped  WFDSConMgrSvc      Wi-Fi Direct Services Connection Ma...
+Stopped  WiaRpc             Still Image Acquisition Events
+Running  WinDefend          Microsoft Defender Antivirus Service
+Running  WinHttpAutoProx... WinHTTP Web Proxy Auto-Discovery Se...
+Running  Winmgmt            Windows Management Instrumentation
+Stopped  WinRM              Windows Remote Management (WS-Manag...
+Stopped  wisvc              Windows Insider Service
+Running  WlanSvc            WLAN AutoConfig
+Stopped  wlidsvc            Microsoft Account Sign-in Assistant
+Stopped  wlpasvc            Local Profile Assistant Service
+Stopped  WManSvc            Windows Management Service
+Stopped  wmiApSrv           WMI Performance Adapter
+Stopped  WMPNetworkSvc      Windows Media Player Network Sharin...
+Stopped  workfolderssvc     Work Folders
+Stopped  WpcMonSvc          Parental Controls
+Stopped  WPDBusEnum         Portable Device Enumerator Service
+Running  WpnService         Windows Push Notifications System S...
+Running  WpnUserService_... Windows Push Notifications User Ser...
+Running  wscsvc             Security Center
+Running  WSearch            Windows Search
+Stopped  wuauserv           Windows Update
+Running  WwanSvc            WWAN AutoConfig
+Stopped  XblAuthManager     Xbox Live Auth Manager
+Stopped  XblGameSave        Xbox Live Game Save
+Stopped  XboxGipSvc         Xbox Accessory Management Service
+Stopped  XboxNetApiSvc      Xbox Live Networking Service
+
 
 # ------------------------------------------
 
-set ORACLE_SID=ORA18
-set ORACLE_HOME=c:\oracle\18c
+.\setup.exe
+
+# ------------------------------------------
+
+  ---> run as admin
+
+set ORACLE_SID=ORA19
+$env:ORACLE_SID='ORA19'
+
 
 mkdir c:\oracle\db
 mkdir c:\oracle\db_recovery_area
-mkdir c:\oracle\db\ORA18
-@rem mkdir c:\oracle\db\ORA18\db_recovery_area
-mkdir c:\oracle\db\ORA18\diag
+mkdir c:\oracle\db\$env:ORACLE_SID
+@rem mkdir c:\oracle\db\$env:ORACLE_SID\db_recovery_area
+mkdir c:\oracle\db\$env:ORACLE_SID\diag
+
+mkdir $env
 
 copy init.ora %ORACLE_HOME%\database\init%ORACLE_SID%.ora
+cp   init.ora $env:ORACLE_HOME\database\init$env:ORACLE_SID.ora
 
 path=%ORACLE_HOME%\bin;%PATH%
+$env:PATH="$env:ORACLE_HOME\bin;$env:PATH"
+
+get-service *oracle*
+
+
+
 
 @ rem ???? oradim -new -sid %ORACLE_SID% -startmode manual -pfile init.ora
   ???      oradim -new -sid %ORACLE_SID% -startmode manual -pfile %ORACLE_HOME%\database\init%ORACLE_SID%.ora
+
+rem PS > oradim -new -sid $env:ORACLE_SID -startmode manual -pfile $env:ORACLE_HOME\database\init$env:ORACLE_SID.ora
+PS > oradim -new -sid $env:ORACLE_SID -startmode manual
+Instance created.
+
+PS C:\WINDOWS\system32> get-service *oracle* | select-object status, name, displayName
+
+----> New Services
+ Status Name                    DisplayName
+ ------ ----                    -----------
+Stopped OracleJobSchedulerORA19 OracleJobSchedulerORA19
+Running OracleServiceORA19      OracleServiceORA19
+Stopped OracleVssWriterORA19    OracleVssWriterORA19
 
   wmic service where "name like '%Oracle%'" get name,status,state
   ---> This seems to take a while:
@@ -44,6 +410,8 @@ create spfile from pfile;
 $ dir /od %ORACLE_HOME%\database
 
 startup nomount
+
+SQL> @../create-database.sql
 
 @?/rdbms/admin/catalog.sql
 @?/rdbms/admin/catproc.sql
