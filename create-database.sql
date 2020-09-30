@@ -1,4 +1,7 @@
-create database ORA18
+create database
+   --
+   ORA19 -- Name of new database. Must match parameter name 'db_name'
+   --
    user sys    identified by iAmSys
    user system identified by iAmSystem
 -- logfile group 1 ('c:\oracle\db\ORA18\redo01a.log') size 100m blocksize 512,

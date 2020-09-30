@@ -402,14 +402,26 @@ Stopped OracleVssWriterORA19    OracleVssWriterORA19
   wmic service where "name like '%Oracle%'" get name,status,state
 
 
-sqlplus /nolog
-CONNECT / AS SYSDBA
+---------------------------------------
 
-create spfile from pfile;
+> get-childItem $env:ORACLE_HOME\database
+d-----        2020-09-30     01:05                archive
+-a----        2020-09-30     02:19           1821 initORA19.ora
+-a----        2005-12-22     03:07          31744 oradba.exe               <------- This seems to be used to add users to groups or something like this
+
+
+sqlplus /nolog
+SQL> CONNECT / AS SYSDBA
+
+--> Connected to an idle instance
+
+SQL> create spfile from pfile;
 
 $ dir /od %ORACLE_HOME%\database
 
-startup nomount
+---> new file SPFILEORA19.ORA
+
+SQ> startup nomount
 
 SQL> @../create-database.sql
 
