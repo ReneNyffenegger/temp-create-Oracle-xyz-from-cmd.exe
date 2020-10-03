@@ -451,28 +451,46 @@ oradim -startup -sid %oracle_sid%
 
 ### Listener
 
-move              %oracle_home%\network\admin\sqlnet.ora %oracle_home%\network\admin\sqlnet.ora.orig
 
 
-del               %oracle_home%\network\admin\listener.ora
-copy listener.ora %oracle_home%\network\admin\listener.ora
+# del                     %oracle_home%\network\admin\listener.ora
+mv                   $env:ORACLE_HOME\network\admin\listener.ora $env:ORACLE_HOME\network\admin\listener.ora.orig
+copy listener.ora       %oracle_home%\network\admin\listener.ora
+cp   listener.ora    $env:ORACLE_HOME\network\admin\listener.ora
 
-del               %oracle_home%\network\admin\sqlnet.ora
+move                    %oracle_home%\network\admin\sqlnet.ora    %oracle_home%\network\admin\sqlnet.ora.orig
+mv                   $env:ORACLE_HOME\network\admin\sqlnet.ora $env:ORACLE_HOME\network\admin\sqlnet.ora.orig
+# del                   %oracle_home%\network\admin\sqlnet.ora
 copy sqlnet.ora   %oracle_home%\network\admin\sqlnet.ora
+cp   sqlnet.ora      $env:ORACLE_HOME\network\admin\sqlnet.ora
 
-del               %oracle_home%\network\admin\tnsnames.ora
+# del               %oracle_home%\network\admin\tnsnames.ora
+# mv                   $env:ORACLE_HOME\network\admin\tnsnames.ora $env:ORACLE_HOME\network\admin\tnsnames.ora.orig
 copy tnsnames.ora %oracle_home%\network\admin\tnsnames.ora
+cp   tnsnames.ora    $env:ORACLE_HOME\network\admin\tnsnames.ora
 
 
 lsnrctl start 
 lsnrctl reload
 
+#
+#  Password Fie
+#  
 
+orapwd file=$env:ORACLE_HOME/database/PWD$env:ORACLE_SID.ora password=pwFilePw/42
+
+#
+#  DATA tablespace
+#
+
+sqlplus / as sysdba
+
+create tablespace data;
 
 #
 #  Create first user
 #
-sqlplus / as sysdba
+
 create user rene
   identified by rene
   default tablespace data;
@@ -484,7 +502,9 @@ to
    rene;
 
 
+
 **** Powershell
 [environment]::setEnvironmentVariable("ORACLE_SID" , "ORA18"        , "machine") 
 [environment]::setEnvironmentVariable("ORACLE_HOME", "c:\oracle\18c", "machine") 
+
 
