@@ -5,6 +5,6 @@ ORA19 = (
       )
    )
    (CONNECT_DATA = (
-       SERVICE_NAME = ORA18)
+       SERVICE_NAME = ORA19)
    )
 )
