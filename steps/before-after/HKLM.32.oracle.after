@@ -1,0 +1,55 @@
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\Fusion\References\System.Data.OracleClient, Version=4.0.0.0, Culture=Neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=amd64
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\Fusion\References\System.Data.OracleClient, Version=4.0.0.0, Culture=Neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=x86
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\MTxOCI
+    OracleOciLib    REG_SZ    oci.dll
+    OracleOciLibPath    REG_EXPAND_SZ    %systemroot%\system32
+    OracleSqlLib    REG_SZ    SQLLib80.dll
+    OracleSqlLibPath    REG_EXPAND_SZ    %systemroot%\system32
+    OracleXaLib    REG_SZ    xa80.dll
+    OracleXaLibPath    REG_EXPAND_SZ    %systemroot%\system32
+
+HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Microsoft ODBC for Oracle
+
+HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers
+    Microsoft ODBC for Oracle    REG_SZ    Installed
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\OraOLEDB.Oracle
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\OraOLEDB.Oracle.1
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\.NET Data Provider for Oracle
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\Application\Oracle Data Provider for .NET, Managed Driver
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\Application\Oracle Data Provider for .NET, Unmanaged Driver
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\Application\Oracle OLAP Provider for OLE DB
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\Application\Oracle Provider for OLE DB
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\OracleRemExecServiceV2
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules
+    TCP Query User{A4BD196D-B4FB-49C4-81E3-82AA2CF4A040}C:\oracle\19.3\jdk\jre\bin\java.exe    REG_SZ    v2.10|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Public|App=C:\oracle\19.3\jdk\jre\bin\java.exe|Name=Java(TM) Platform SE binary|Desc=Java(TM) Platform SE binary|Defer=User|
+    UDP Query User{7449FAF7-749A-4CE2-87A2-1895F042D0CF}C:\oracle\19.3\jdk\jre\bin\java.exe    REG_SZ    v2.10|Action=Allow|Active=TRUE|Dir=In|Protocol=17|Profile=Public|App=C:\oracle\19.3\jdk\jre\bin\java.exe|Name=Java(TM) Platform SE binary|Desc=Java(TM) Platform SE binary|Defer=User|
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\.NET Data Provider for Oracle
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\Oracle Data Provider for .NET, Managed Driver
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\Oracle Data Provider for .NET, Unmanaged Driver
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\Oracle OLAP Provider for OLE DB
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\Oracle Provider for OLE DB
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OracleRemExecServiceV2
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules
+    TCP Query User{A4BD196D-B4FB-49C4-81E3-82AA2CF4A040}C:\oracle\19.3\jdk\jre\bin\java.exe    REG_SZ    v2.10|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Public|App=C:\oracle\19.3\jdk\jre\bin\java.exe|Name=Java(TM) Platform SE binary|Desc=Java(TM) Platform SE binary|Defer=User|
+    UDP Query User{7449FAF7-749A-4CE2-87A2-1895F042D0CF}C:\oracle\19.3\jdk\jre\bin\java.exe    REG_SZ    v2.10|Action=Allow|Active=TRUE|Dir=In|Protocol=17|Profile=Public|App=C:\oracle\19.3\jdk\jre\bin\java.exe|Name=Java(TM) Platform SE binary|Desc=Java(TM) Platform SE binary|Defer=User|
+
+End of search: 28 match(es) found.

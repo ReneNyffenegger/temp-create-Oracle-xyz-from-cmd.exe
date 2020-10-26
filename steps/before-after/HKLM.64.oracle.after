@@ -1,0 +1,120 @@
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\OraOLEDB.Oracle
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Classes\OraOLEDB.Oracle.1
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Fusion\GACChangeNotification\Default
+    System.Data.OracleClient,4.0.0.0,,b77a5c561934e089,x86    REG_BINARY    B94236C90EDED401
+    System.Data.OracleClient,4.0.0.0,,b77a5c561934e089,amd64    REG_BINARY    17991DBF0EDED401
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\MTxOCI
+    OracleOciLib    REG_SZ    oci.dll
+    OracleOciLibPath    REG_EXPAND_SZ    %systemroot%\system32
+    OracleSqlLib    REG_SZ    SQLLib80.dll
+    OracleSqlLibPath    REG_EXPAND_SZ    %systemroot%\system32
+    OracleXaLib    REG_SZ    xa80.dll
+    OracleXaLibPath    REG_EXPAND_SZ    %systemroot%\system32
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_microsoft-windows-com-dtc-oraclesupport_31bf3856ad364e35_none_c159d93b3563c599
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_netfx4-system.data.oracleclient_b03f5f7f11d50a3a_none_cc5f1d8c0eb3fede
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_netfx4-_dataoraclec..hared12_neutral_ini_b03f5f7f11d50a3a_none_04c179ad50fbb03a
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_netfx4-_dataoraclec.._shared12_neutral_h_b03f5f7f11d50a3a_none_caf37bdacd3d8140
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\amd64_system.data.oracleclient_b77a5c561934e089_none_dc475d9b214bb3ae
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\msil_system.data.oracleclient.resources_b77a5c561934e089_en-us_c2a285e73592f856
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\x86_microsoft-windows-com-dtc-oraclesupport_31bf3856ad364e35_none_653b3db77d065463
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\x86_microsoft-windows-m..-odbc-oracle-driver_31bf3856ad364e35_none_00b9d52d47047893
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\x86_microsoft-windows-m..c-oracle-driver-dll_31bf3856ad364e35_none_d6d73553ba13b634
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\x86_microsoft-windows-m..c-oracle-driver-rll_31bf3856ad364e35_none_d6e5395fba0718f6
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\x86_microsoft-windows-m..edb-oracle-provider_31bf3856ad364e35_none_e7c21f839682c16a
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\x86_microsoft-windows-m..oracle-provider-dll_31bf3856ad364e35_none_c9dca98994b62203
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\x86_microsoft-windows-m..oracle-provider-rll_31bf3856ad364e35_none_c9454aa19527a931
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide\Winners\x86_system.data.oracleclient_b77a5c561934e089_none_23f4947235c7dcb4
+
+HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers
+    Oracle in OraDB19Home1    REG_SZ    Installed
+
+HKEY_LOCAL_MACHINE\SOFTWARE\ODBC\ODBCINST.INI\Oracle in OraDB19Home1
+
+HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE
+
+HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\KEY_OraDB19Home1
+    ORACLE_HOME    REG_SZ    C:\Oracle\19.3
+    ORACLE_HOME_NAME    REG_SZ    OraDB19Home1
+    ORACLE_GROUP_NAME    REG_SZ    Oracle - OraDB19Home1
+    ORACLE_BUNDLE_NAME    REG_SZ    Enterprise
+    ORACLE_HOME_READONLY    REG_SZ    N
+    ORACLE_HOME_TYPE    REG_SZ    1
+    ORACLE_SVCUSER    REG_SZ    ORA_OraDB19Home1_SVCACCTS
+    ORACLE_SVCUSER_TYPE    REG_SZ    V
+    ORACLE_SVCUSER_PWDREQ    REG_SZ    0
+    ORACLE_BASE    REG_SZ    C:\Oracle\app\Rene
+
+HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\ODP.NET\2.122.19.1
+    DemandOraclePermission    REG_SZ    0
+
+HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE\ODP.NET\4.122.19.1
+    DemandOraclePermission    REG_SZ    0
+
+HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\Fusion\References\System.Data.OracleClient, Version=4.0.0.0, Culture=Neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=amd64
+
+HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\Fusion\References\System.Data.OracleClient, Version=4.0.0.0, Culture=Neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=x86
+
+HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\MSDTC\MTxOCI
+    OracleOciLib    REG_SZ    oci.dll
+    OracleOciLibPath    REG_EXPAND_SZ    %systemroot%\system32
+    OracleSqlLib    REG_SZ    SQLLib80.dll
+    OracleSqlLibPath    REG_EXPAND_SZ    %systemroot%\system32
+    OracleXaLib    REG_SZ    xa80.dll
+    OracleXaLibPath    REG_EXPAND_SZ    %systemroot%\system32
+
+HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ODBC\ODBCINST.INI\Microsoft ODBC for Oracle
+
+HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ODBC\ODBCINST.INI\ODBC Drivers
+    Microsoft ODBC for Oracle    REG_SZ    Installed
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\.NET Data Provider for Oracle
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\Application\Oracle Data Provider for .NET, Managed Driver
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\Application\Oracle Data Provider for .NET, Unmanaged Driver
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\Application\Oracle OLAP Provider for OLE DB
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\Application\Oracle Provider for OLE DB
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\OracleRemExecServiceV2
+
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules
+    TCP Query User{A4BD196D-B4FB-49C4-81E3-82AA2CF4A040}C:\oracle\19.3\jdk\jre\bin\java.exe    REG_SZ    v2.10|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Public|App=C:\oracle\19.3\jdk\jre\bin\java.exe|Name=Java(TM) Platform SE binary|Desc=Java(TM) Platform SE binary|Defer=User|
+    UDP Query User{7449FAF7-749A-4CE2-87A2-1895F042D0CF}C:\oracle\19.3\jdk\jre\bin\java.exe    REG_SZ    v2.10|Action=Allow|Active=TRUE|Dir=In|Protocol=17|Profile=Public|App=C:\oracle\19.3\jdk\jre\bin\java.exe|Name=Java(TM) Platform SE binary|Desc=Java(TM) Platform SE binary|Defer=User|
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\.NET Data Provider for Oracle
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\Oracle Data Provider for .NET, Managed Driver
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\Oracle Data Provider for .NET, Unmanaged Driver
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\Oracle OLAP Provider for OLE DB
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\Application\Oracle Provider for OLE DB
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OracleRemExecServiceV2
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules
+    TCP Query User{A4BD196D-B4FB-49C4-81E3-82AA2CF4A040}C:\oracle\19.3\jdk\jre\bin\java.exe    REG_SZ    v2.10|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Public|App=C:\oracle\19.3\jdk\jre\bin\java.exe|Name=Java(TM) Platform SE binary|Desc=Java(TM) Platform SE binary|Defer=User|
+    UDP Query User{7449FAF7-749A-4CE2-87A2-1895F042D0CF}C:\oracle\19.3\jdk\jre\bin\java.exe    REG_SZ    v2.10|Action=Allow|Active=TRUE|Dir=In|Protocol=17|Profile=Public|App=C:\oracle\19.3\jdk\jre\bin\java.exe|Name=Java(TM) Platform SE binary|Desc=Java(TM) Platform SE binary|Defer=User|
+
+End of search: 65 match(es) found.
