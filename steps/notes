@@ -11,11 +11,37 @@
 #
 #
 Check
-  - Computer\HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE
+  - HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE
+    --> is empty
 
-####
+  - Computer\HKEY_CLASSES_ROOT\CLSID\{3F63C36E-51A3-11D2-BB7D-00C04FA30080}
+    --> Does not exist
 
-$env:ORACLE_HOME='c:\Oracle\19'
+  - Computer\HKEY_CLASSES_ROOT\OraOLEDB.Oracle
+    --> does not exist
+   
+
+Download Oracle from
+  https://www.oracle.com/ch-de/database/technologies/oracle-database-software-downloads.html
+
+
+#### before / after (init)
+
+
+cmd.exe
+  reg query HKLM /s /f oracle   > before-after\HKLM-oracle.before
+
+  reg query HKLM /s /k /v /f oracle /reg:64  > before-after\HKLM.64.oracle.before
+  reg query HKLM /s /k /v /f oracle /reg:32  > before-after\HKLM.32.oracle.before
+
+  wmic UserAccount get name,sid              > before-after\userAccount.before
+
+  exit
+
+
+#### (unzip)
+
+$env:ORACLE_HOME='c:\Oracle\19.3'
 
 expand-archive ~/Downloads/WINDOWS.X64_193000_db_home.zip $env:ORACLE_HOME
 
