@@ -61,6 +61,20 @@ cd $env:ORACLE_HOME
 save response file
   compare saved .rsp with $env:ORACLE_HOME/install/response/db_yyyy-mm-hh-mi-ssxm.rsp
 
+# ...
+
+cmd.exe
+# reg query HKLM /s /f oracle   > before-after\HKLM-oracle.after
+
+  reg query HKLM /s /k /v /f oracle /reg:64  > before-after\HKLM.64.oracle.after
+  reg query HKLM /s /k /v /f oracle /reg:32  > before-after\HKLM.32.oracle.after
+
+  wmic UserAccount                             get name,sid              > before-after\userAccount.after
+  wmic group       where "localAccount='true'" get caption,Sid,status    > before-after\group.after
+
+  exit
+
+  get-service                                                            > before-after\services.after
 
 # ------------------------------------------
 #
