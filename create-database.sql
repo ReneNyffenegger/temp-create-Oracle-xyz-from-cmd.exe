@@ -1,6 +1,6 @@
 create database
    --
-   ORA19 -- Name of new database. Must match parameter name 'db_name'
+   ORA193 -- Name of new database. Must match parameter name 'db_name'
    --
    user sys    identified by iAmSys
    user system identified by iAmSystem

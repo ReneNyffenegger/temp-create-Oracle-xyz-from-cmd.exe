@@ -14,9 +14,14 @@
 # Change '<ORACLE_BASE>' to point to the oracle base (the one you specify at
 # install time)
  
-db_name                    = ORA19  # Must agree with database name in "create database" statement
+# db_name                  = ORA19   # Must agree with database name in "create database" statement
+db_name                    = ORA193  # Must agree with database name in "create database" statement
+
 memory_target              = 1G
+# memory_target              = 512M  # Stuben PC!!!!
+
 processes                  = 150
+# processes                  = 50  # Stuben PC
 db_block_size              = 8192
 db_domain                  = ''
 

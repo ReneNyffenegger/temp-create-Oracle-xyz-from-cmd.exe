@@ -31,7 +31,7 @@ ls C:\Program Files\Oracle --> nothing
 ls C:\Oracle               --> nothing
 
 cmd.exe
-  reg query HKLM /s /f oracle   > before-after\HKLM-oracle.before
+  REM  reg query HKLM /s /f oracle   > before-after\HKLM-oracle.before
 
   reg query HKLM /s /k /v /f oracle /reg:64  > before-after\HKLM.64.oracle.before
   reg query HKLM /s /k /v /f oracle /reg:32  > before-after\HKLM.32.oracle.before
@@ -42,6 +42,23 @@ cmd.exe
   exit
 
   get-service                                                            > before-after\services.before
+
+
+cmd.exe
+  REM reg query HKLM /s /f oracle   > before-after\HKLM-oracle.before.1
+
+  reg query HKLM /s /k /v /f oracle /reg:64  > before-after\HKLM.64.oracle.before.1
+  reg query HKLM /s /k /v /f oracle /reg:32  > before-after\HKLM.32.oracle.before.1
+
+  wmic UserAccount                             get name,sid              > before-after\userAccount.before.1
+  wmic group       where "localAccount='true'" get caption,Sid,status    > before-after\group.before.1
+
+  exit
+
+  get-service                                                            > before-after\services.before.1
+
+
+
 
 #### (unzip)
 
@@ -64,7 +81,7 @@ save response file
 # ...
 
 cmd.exe
-# reg query HKLM /s /f oracle   > before-after\HKLM-oracle.after
+  REM reg query HKLM /s /f oracle   > before-after\HKLM-oracle.after
 
   reg query HKLM /s /k /v /f oracle /reg:64  > before-after\HKLM.64.oracle.after
   reg query HKLM /s /k /v /f oracle /reg:32  > before-after\HKLM.32.oracle.after
@@ -89,10 +106,19 @@ cmd.exe
 
 # ------------------------------------------
 
+  cp 'C:\Program Files\Oracle\Inventory\ContentsXML\inventory.xml'   inventory/inventory.xml
+  cp 'C:\Program Files\Oracle\Inventory\ContentsXML\comps.xml'       inventory/comps.xml
+  cp 'C:\Program Files\Oracle\Inventory\ContentsXML\libs.xml'        inventory/libs.xml
+  cp 'C:\Program Files\Oracle\Inventory\ContentsXML\oui-patch.xml'   inventory/oui-patch.xml
+
+
+# ------------------------------------------
+
   ---> run as admin
 
 set ORACLE_SID=ORA19
-$env:ORACLE_SID='ORA19'
+$env:ORACLE_SID='ORA193'
+$env:ORACLE_HOME='c:\Oracle\19.3'
 
 
 mkdir c:\oracle\db
@@ -100,8 +126,6 @@ mkdir c:\oracle\db_recovery_area
 mkdir c:\oracle\db\$env:ORACLE_SID
 @rem mkdir c:\oracle\db\$env:ORACLE_SID\db_recovery_area
 mkdir c:\oracle\db\$env:ORACLE_SID\diag
-
-mkdir $env
 
 copy init.ora %ORACLE_HOME%\database\init%ORACLE_SID%.ora
 cp   init.ora $env:ORACLE_HOME\database\init$env:ORACLE_SID.ora
@@ -114,10 +138,12 @@ get-service *oracle*
 
 
 
-@ rem ???? oradim -new -sid %ORACLE_SID% -startmode manual -pfile init.ora
-  ???      oradim -new -sid %ORACLE_SID% -startmode manual -pfile %ORACLE_HOME%\database\init%ORACLE_SID%.ora
+# @ rem ???? oradim -new -sid %ORACLE_SID% -startmode manual -pfile init.ora
+#   ???      oradim -new -sid %ORACLE_SID% -startmode manual -pfile %ORACLE_HOME%\database\init%ORACLE_SID%.ora
 
-rem PS > oradim -new -sid $env:ORACLE_SID -startmode manual -pfile $env:ORACLE_HOME\database\init$env:ORACLE_SID.ora
+# rem PS > oradim -new -sid $env:ORACLE_SID -startmode manual -pfile $env:ORACLE_HOME\database\init$env:ORACLE_SID.ora
+
+# Takes quite some time:
 PS > oradim -new -sid $env:ORACLE_SID -startmode manual
 Instance created.
 
@@ -130,10 +156,10 @@ Stopped OracleJobSchedulerORA19 OracleJobSchedulerORA19
 Running OracleServiceORA19      OracleServiceORA19
 Stopped OracleVssWriterORA19    OracleVssWriterORA19
 
-  wmic service where "name like '%Oracle%'" get name,status,state
-  ---> This seems to take a while:
-  oradim -new -sid %ORACLE_SID% -startmode manual        
-  wmic service where "name like '%Oracle%'" get name,status,state
+#  wmic service where "name like '%Oracle%'" get name,status,state
+#  ---> This seems to take a while:
+#  oradim -new -sid %ORACLE_SID% -startmode manual        
+#  wmic service where "name like '%Oracle%'" get name,status,state
 
 
 ---------------------------------------
