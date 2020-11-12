@@ -23,12 +23,16 @@ SID_LIST_LISTENER =
       (GLOBAL_DBNAME = ORA19)
       (ORACLE_HOME   = c:\Oracle\19c)
       (SID_NAME      = ORA19)
+  #   (PROGRAM       = extproc)
     )
   )
 
+# )
+
 LISTENER =
   (DESCRIPTION_LIST =
-    (DESCRIPTION =
-      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))
-    )
+    (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost      )(PORT = 1521)))
+#   (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.161  )(PORT = 1521)))
+#   (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.0.227  )(PORT = 1521)))
+    (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = DESKTOP-1SDJMCL)(PORT = 1521)))
   )
