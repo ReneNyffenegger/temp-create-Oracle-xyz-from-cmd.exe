@@ -268,3 +268,7 @@ to
 [environment]::setEnvironmentVariable("ORACLE_HOME", "c:\oracle\18c", "machine") 
 
 
+#
+#   Firewall ?
+#
+netsh advfirewall firewall add rule name="Allow Oracle connection" dir=in action=allow protocol=TCP localport=1521
