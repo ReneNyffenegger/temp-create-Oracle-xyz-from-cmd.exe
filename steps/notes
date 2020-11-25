@@ -1,3 +1,4 @@
+# vi foldmethod=marker foldmarker={{{,}}}
 # 
 #  https://docs.oracle.com/en/database/oracle/oracle-database/18/admin/creating-and-configuring-an-oracle-database.html
 #  https://docs.oracle.com/en/database/oracle/oracle-database/19/admin/creating-and-configuring-an-oracle-database.html
@@ -9,7 +10,7 @@
 #        --> WINDOWS.X64_193000_db_home.zip
 #      
 #
-#
+# 
 Check
   - HKEY_LOCAL_MACHINE\SOFTWARE\ORACLE
     --> is empty
@@ -25,7 +26,7 @@ Download Oracle from
   https://www.oracle.com/ch-de/database/technologies/oracle-database-software-downloads.html
 
 
-#### before / after (init)
+#### before / after (init) {{{
 
 ls C:\Program Files\Oracle --> nothing
 ls C:\Oracle               --> nothing
@@ -60,12 +61,13 @@ cmd.exe
 
 
 
-#### (unzip)
+# }}}
+#### (unzip) {{{
 
 $env:ORACLE_HOME='c:\Oracle\19.3'
 
 expand-archive ~/Downloads/WINDOWS.X64_193000_db_home.zip $env:ORACLE_HOME
-#
+# }}}
 # ------------------------------------------
 
 cd $env:ORACLE_HOME
@@ -194,22 +196,40 @@ connect system/iAmSystem
 @?/sqlplus/admin/pupbld.sql
 
 
+# {{{ Put database in archivelog mode
+
+
+sqlplus / as sysdba
+shutdown immediate
+alter database archivelog
+alter database open
+
+change log_archive_dest_n
+
+  # compare with 
+  #   development/databases/Oracle/architecture/database/archiving-mode
+
+
+
+
+# }}}
 
 #
-# Create tablespace (as user system)
+# Create tablespace (as user system) {{{
 #
 
 create tablespace data;
 
 
-#
-#### Starting up DB
+# }}}
+#### Starting up DB {{{
 #
 #    Run as admin
 
 oradim -startup -sid %oracle_sid%
 
-### Listener
+# }}}
+### Listener / ORANET {{{
 
 
 
@@ -233,22 +253,22 @@ cp   tnsnames.ora    $env:ORACLE_HOME\network\admin\tnsnames.ora
 lsnrctl start 
 lsnrctl reload
 
-#
-#  Password Fie
+# }}}
+#  Password Fie {{{
 #  
 
 orapwd file=$env:ORACLE_HOME/database/PWD$env:ORACLE_SID.ora password=pwFilePw/42
 
-#
-#  DATA tablespace
+# }}}
+#  DATA tablespace {{{
 #
 
 sqlplus / as sysdba
 
 create tablespace data;
 
-#
-#  Create first user
+# }}}
+#  Create first user {{{
 #
 
 create user rene
@@ -268,7 +288,11 @@ to
 [environment]::setEnvironmentVariable("ORACLE_HOME", "c:\oracle\18c", "machine") 
 
 
-#
-#   Firewall ?
+# }}}
+#   Firewall ? {{{
 #
 netsh advfirewall firewall add rule name="Allow Oracle connection" dir=in action=allow protocol=TCP localport=1521
+
+# }}}
+
+
